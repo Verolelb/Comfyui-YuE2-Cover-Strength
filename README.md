@@ -1,11 +1,11 @@
 # Comfyui-YuE2-Cover-Strength
 
-Custom node ComfyUI : **YuE2 Cover Strength**.
+A ComfyUI custom node: **YuE2 Cover Strength**.
 
-Dilue progressivement un score **ABC** (provenant de SheetSage2 ou d'un plan) selon une force de 0 à 100 %.
+It progressively dilutes an **ABC** score (coming from SheetSage2 or a plan) based on a strength value from 0 to 100%.
 
-- `0 %` → presque plus de mélodie (très libre)
-- `100 %` → score intact (cover natif)
+- `0%` → almost no melody left (very free)
+- `100%` → score intact (native cover)
 
 ## Installation
 
@@ -14,33 +14,33 @@ cd ComfyUI/custom_nodes
 git clone https://github.com/Verolelb/Comfyui-YuE2-Cover-Strength.git
 ```
 
-Redémarre ComfyUI. Le node apparaît dans la catégorie `YuE2/Utils`.
+Restart ComfyUI. The node shows up under the `YuE2/Utils` category.
 
 ## Node
 
 ### `YuE2 Cover Strength` (`YuE2CoverStrength`)
 
-Entrées :
+Inputs:
 
-| Entrée | Type | Défaut | Description |
+| Input | Type | Default | Description |
 | --- | --- | --- | --- |
-| `abc` | STRING (multiline, forceInput) | — | Score ABC brut |
-| `strength` | FLOAT (0–100) | `100.0` | `0` = très libre, `100` = cover fidèle |
-| `mode` | `notes` / `notes+structure` / `aggressive` | `notes` | Niveau de dilution |
-| `seed` | INT | `0` | Seed de la dilution aléatoire (`0` = aléatoire) |
-| `keep_vocal_only` | BOOLEAN | `False` | Garde uniquement la voix `Vocal`, passe `Ins` en rests |
+| `abc` | STRING (multiline, forceInput) | — | Raw ABC score |
+| `strength` | FLOAT (0–100) | `100.0` | `0` = very free, `100` = faithful cover |
+| `mode` | `notes` / `notes+structure` / `aggressive` | `notes` | Dilution level |
+| `seed` | INT | `0` | Random dilution seed (`0` = random) |
+| `keep_vocal_only` | BOOLEAN | `False` | Keep the `Vocal` voice only, turn `Ins` into rests |
 
-Sorties :
+Outputs:
 
-- `abc_diluted` : le score ABC dilué
-- `info` : résumé de l'opération (force, mode, seed)
+- `abc_diluted` — the diluted ABC score
+- `info` — summary of the operation (strength, mode, seed)
 
 ## Modes
 
-- **`notes`** — efface seulement les notes (remplacées par des rests de durée approximative).
-- **`notes+structure`** — efface aussi une partie des sections (`verse`, `chorus`, `bridge`, `interlude`, `intro`, `outro`) quand la force passe sous 85 %.
-- **`aggressive`** — dilution plus forte, avec un bruit de hauteur aléatoire.
+- **`notes`** — erases notes only (each one replaced by a rest of roughly matching duration).
+- **`notes+structure`** — also erases part of the sections (`verse`, `chorus`, `bridge`, `interlude`, `intro`, `outro`) once strength drops below 85%.
+- **`aggressive`** — stronger dilution, plus random pitch noise.
 
-## Licence
+## License
 
-Non définie.
+Not defined.
